@@ -53,4 +53,30 @@ extension MovieDetailModel: MovieDetailModelProtocol {
         }
     }
     
+    func fetchTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, Error>) -> Void) {
+        listMoviesServices.getTrailer(id: id) { [weak self] response in
+            switch response {
+            case .success(let entity):
+                Logger.debug(entity)
+                result(.success(entity))
+            case . failure(let error):
+                Logger.debug(error)
+                result(.failure(error))
+            }
+        }
+    }
+    
+    func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, Error>) -> Void) {
+        listMoviesServices.getCastDetail(id: id) { [weak self] response in
+            switch response {
+            case .success(let entity):
+                Logger.debug(entity)
+                result(.success(entity))
+            case . failure(let error):
+                Logger.debug(error)
+                result(.failure(error))
+            }
+        }
+    }
+    
 }

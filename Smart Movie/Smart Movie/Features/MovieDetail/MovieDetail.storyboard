@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -60,7 +59,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-I1-n5I">
                                         <rect key="frame" x="10" y="0.0" width="394" height="250"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iTe-RF-UMx">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iTe-RF-UMx">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="250"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8kJ-bm-zZC">
@@ -178,6 +177,21 @@
                                                     <constraint firstAttribute="trailing" secondItem="RHP-Pa-fg1" secondAttribute="trailing" id="vrq-G3-bgw"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXz-13-KdS">
+                                                <rect key="frame" x="0.0" y="220" width="157.5" height="30"/>
+                                                <color key="backgroundColor" red="0.16185910484504945" green="0.39174516224928918" blue="0.78370064496994019" alpha="0.38012861394557823" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="ak6-2w-g2e"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="20"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trailer"/>
+                                                <connections>
+                                                    <action selector="invokeWatchTrailerButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="yhp-mE-e4U"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -186,9 +200,12 @@
                                             <constraint firstAttribute="height" constant="250" id="ACf-2x-Xdd"/>
                                             <constraint firstItem="8kJ-bm-zZC" firstAttribute="leading" secondItem="iTe-RF-UMx" secondAttribute="trailing" constant="10" id="F0x-Ze-gVy"/>
                                             <constraint firstItem="iTe-RF-UMx" firstAttribute="width" secondItem="Ncd-I1-n5I" secondAttribute="width" multiplier="1/2.5" id="MFP-aX-kSn"/>
+                                            <constraint firstItem="8kJ-bm-zZC" firstAttribute="leading" secondItem="lXz-13-KdS" secondAttribute="trailing" constant="10" id="PCF-i6-Giw"/>
+                                            <constraint firstAttribute="bottom" secondItem="lXz-13-KdS" secondAttribute="bottom" id="RpZ-0R-OkB"/>
                                             <constraint firstItem="8kJ-bm-zZC" firstAttribute="top" secondItem="Ncd-I1-n5I" secondAttribute="top" id="Ugn-bt-XnT"/>
                                             <constraint firstAttribute="bottom" secondItem="8kJ-bm-zZC" secondAttribute="bottom" id="jFA-ou-5JL"/>
                                             <constraint firstAttribute="bottom" secondItem="iTe-RF-UMx" secondAttribute="bottom" id="swn-kd-7op"/>
+                                            <constraint firstItem="lXz-13-KdS" firstAttribute="leading" secondItem="Ncd-I1-n5I" secondAttribute="leading" id="uwT-FR-uYO"/>
                                             <constraint firstItem="iTe-RF-UMx" firstAttribute="top" secondItem="Ncd-I1-n5I" secondAttribute="top" id="yne-3U-8Ox"/>
                                         </constraints>
                                     </view>

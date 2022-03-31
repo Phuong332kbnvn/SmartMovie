@@ -12,9 +12,13 @@ final class MovieDetailPresenter {
     private var model: MovieDetailContract.Model
     private var listCastsResponseEntity: [CastEntity] = []
     private var listSimilarsResponseEntity: [MovieEntity] = []
+    private var listTrailerEntity: [TrailerEntity] = []
+    var castDetail: CastDetailEntity?
     var movieDetailEntity: MovieDetailEntity?
     var needReload: (() -> Void)?
-    var needReloadCast: (()-> Void)?
+    var needReloadCast: (() -> Void)?
+    var needReloadCastDetail: (() -> Void)?
+    var getListTrailers: (([TrailerEntity]) -> Void)?
     
     init(model: MovieDetailContract.Model) {
         self.model = model
@@ -22,8 +26,6 @@ final class MovieDetailPresenter {
 }
 
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
-   
-    
     
     func viewDidAppear() {
         
@@ -35,6 +37,18 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
             case .success(let entity):
                 self?.movieDetailEntity = entity
                 self?.needReload?()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchTrailer(id: Int) {
+        model.fetchTrailer(id: id) { [weak self] result in
+            switch result {
+            case .success(let entity):
+                self?.listTrailerEntity = entity.results
+                self?.getListTrailers?(entity.results)
             case .failure(let error):
                 print(error)
             }
@@ -65,6 +79,18 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
         }
     }
     
+    func fetchCastDetail(idCast: Int) {
+        model.fetchCastDetail(id: idCast) { [weak self] result in
+            switch result {
+            case .success(let entity):
+                self?.castDetail = entity
+                self?.needReloadCastDetail?()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func attach(view: MovieDetailViewProtocol) {
         contentView = view
     }
@@ -89,5 +115,12 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
         return listCastsResponseEntity
     }
     
+    func getIDMovie(indexPath: IndexPath) -> Int {
+        return listSimilarsResponseEntity[indexPath.row].id
+    }
+    
+    func getIDCast(indexPath: IndexPath) -> Int {
+        return listCastsResponseEntity[indexPath.row].id
+    }
 }
 

@@ -11,6 +11,7 @@ import Kingfisher
 class MovieDetailViewController: UIViewController {
     // MARK: - Variables
     private var presenter = MovieDetailPresenter(model: MovieDetailModel())
+    private var listTrailer: [TrailerEntity] = []
     var idMovie: Int = 0
     var section: [String] = ["Cast","Similar"]
     
@@ -31,10 +32,14 @@ class MovieDetailViewController: UIViewController {
         presenter.attach(view: self)
         
         presenter.fetchMovieDetail(id: idMovie)
+        presenter.fetchTrailer(id: idMovie)
         presenter.fetchListCasts(id: idMovie)
         presenter.fetchListSimilar(id: idMovie)
         presenter.needReloadCast = { [weak self] in
             self?.castTableView.reloadData()
+        }
+        presenter.getListTrailers = { [weak self] results in
+            self?.listTrailer = results
         }
         setupData()
     }
@@ -80,7 +85,7 @@ class MovieDetailViewController: UIViewController {
             self.voteAvengerLabel.text = "\(data.voteAverage) / 10"
             
             if let url = URL(string: "https://image.tmdb.org/t/p/w500\(data.posterPath)") {
-                let processor = DownsamplingImageProcessor(size: self.movieImageView.bounds.size ?? CGSize())
+                let processor = DownsamplingImageProcessor(size: self.movieImageView.bounds.size)
                 |> RoundCornerImageProcessor(cornerRadius: 5)
                 self.movieImageView.kf.setImage(with: url,
                                                 placeholder: nil,
@@ -166,6 +171,20 @@ class MovieDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func invokeWatchTrailerButton(_ sender: UIButton) {
+        guard let url = URL(string: "https://www.youtube.com/embed/\(listTrailer[0].key)") else {
+            return
+        }
+//        let storyboard = UIStoryboard.init(name: "TrailerViewController", bundle: nil)
+//        guard let trailerViewController = storyboard.instantiateViewController(withIdentifier: "TrailerViewController") as? TrailerViewController else {
+//            return
+//        }
+        let trailerViewController = WatchTrainerViewController()
+        trailerViewController.modalPresentationStyle = .overFullScreen
+        trailerViewController.url = url
+        navigationController?.pushViewController(trailerViewController, animated: true)
+    }
+    
     @IBAction func invokeSeeAllButton(_ sender: UIButton) {
         overviewLabel.numberOfLines = 0
         seeAllButton.isHidden = true
@@ -192,6 +211,7 @@ extension MovieDetailViewController: UITableViewDataSource {
             {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.data = presenter.cellForRowCastAt(indexPath: indexPath)
             return cell
             
@@ -229,6 +249,19 @@ extension MovieDetailViewController: UITableViewDelegate {
         return tableView.bounds.height/2.5
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            
+        } else {
+            let storyboard = UIStoryboard.init(name: "MovieDetail", bundle: nil)
+            guard let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
+                return
+            }
+            viewController.idMovie = presenter.getIDMovie(indexPath: indexPath)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         overviewLabel.numberOfLines = 3
         seeAllButton.isHidden = false
@@ -255,5 +288,16 @@ extension MovieDetailViewController: MovieDetailViewProtocol {
     
     func displayListMovie(_ movieDetail: MovieDetailEntity) {
         Logger.debug(movieDetail)
+    }
+}
+
+extension MovieDetailViewController: CastTableViewCellDelegate {
+    func didSelectRowAt(idCast: Int) {
+        let storyboard = UIStoryboard.init(name: "CastDetailViewController", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(withIdentifier: "CastDetailViewController") as? CastDetailViewController else {
+                    return
+                }
+        viewController.idCast = idCast
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

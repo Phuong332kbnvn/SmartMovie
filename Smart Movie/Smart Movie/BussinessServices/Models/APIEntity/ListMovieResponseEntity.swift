@@ -182,16 +182,83 @@ struct ListCastsResponseEntity: Codable {
 
 // MARK: - Cast Entity
 struct CastEntity: Codable {
+    let id: Int
     let name: String
     let profilePath: String?
 
     enum CodingKeys: String, CodingKey {
+        case id
         case name
         case profilePath = "profile_path"
     }
 }
 
 
+// MARK: - Trailer Request Entity
+struct TrailerRequestEntity: Codable {
+    let apiKey: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case apiKey = "api_key"
+    }
+}
 
+// MARK: - Trailer Response Entity
+struct TrailerResponseEntity: Codable {
+    let results: [TrailerEntity]
+}
+
+// MARK: - TrailerEntity
+struct TrailerEntity: Codable {
+    let iso639_1, iso3166_1, name, key: String
+    let site: String
+    let size: Int
+    let type: String
+    let official: Bool
+    let publishedAt, id: String
+
+    enum CodingKeys: String, CodingKey {
+        case iso639_1 = "iso_639_1"
+        case iso3166_1 = "iso_3166_1"
+        case name, key, site, size, type, official
+        case publishedAt = "published_at"
+        case id
+    }
+}
+
+
+// MARK: - Cast Detail Request Entity
+struct CastDetailRequestEntity: Codable {
+    let apiKey: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case apiKey = "api_key"
+    }
+}
+
+// MARK: - Cast Detail Entity
+struct CastDetailEntity: Codable {
+    let adult: Bool
+    let alsoKnownAs: [String]
+    let biography, birthday: String
+    let gender: Int
+    let homepage: String
+    let id: Int
+    let imdbID, knownForDepartment, name, placeOfBirth: String
+    let popularity: Double
+    let profilePath: String
+
+    enum CodingKeys: String, CodingKey {
+        case adult
+        case alsoKnownAs = "also_known_as"
+        case biography, birthday, gender, homepage, id
+        case imdbID = "imdb_id"
+        case knownForDepartment = "known_for_department"
+        case name
+        case placeOfBirth = "place_of_birth"
+        case popularity
+        case profilePath = "profile_path"
+    }
+}
 
 

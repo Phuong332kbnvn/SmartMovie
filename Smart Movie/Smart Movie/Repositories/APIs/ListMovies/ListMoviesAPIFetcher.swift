@@ -15,6 +15,8 @@ protocol ListMoviesAPIFetcherProtocol {
     func fetchMovieDetail(id: Int, result: @escaping (Result<MovieDetailEntity, NetworkServiceError>) -> Void)
     func fetchListCasts(id: Int, result: @escaping (Result<ListCastsResponseEntity, NetworkServiceError>) -> Void)
     func fetchListSimilars(id: Int, result: @escaping (Result<ListMovieResponseEntity, NetworkServiceError>) -> Void)
+    func fetchTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, NetworkServiceError>) -> Void)
+    func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, NetworkServiceError>) -> Void)
 }
 
 final class ListMoviesAPIFetcher: BaseAPIFetcher {
@@ -264,4 +266,68 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
         }
     }
     
+    func fetchTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, NetworkServiceError>) -> Void) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/videos") else {
+            Logger.debug("URL nil")
+            result(.failure(.noData))
+            return
+        }
+
+        let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
+        // API key get from keychain
+        let bodyParams = TrailerRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
+            guard let self = self else {
+                Logger.debug("PropertySearch API Fetcher nil before complete callback")
+                return
+            }
+
+            switch dataResult {
+            case .success(let data):
+                print(data)
+                do {
+                    let responseEntity = try self.decodeData(data, type: TrailerResponseEntity.self)
+                    result(.success(responseEntity))
+                } catch {
+                    Logger.debug("Unknow error, return decode failed")
+                    result(.failure(.noData))
+                }
+            case .failure(let networkServicesError):
+                print(networkServicesError)
+            }
+        }
+    }
+    
+    func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, NetworkServiceError>) -> Void) {
+//    https://api.themoviedb.org/3/person/25540?api_key=d5b97a6fad46348136d87b78895a0c06
+        guard let url = URL(string: "https://api.themoviedb.org/3/person/\(id)") else {
+            Logger.debug("URL nil")
+            result(.failure(.noData))
+            return
+        }
+
+        let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
+        // API key get from keychain
+        let bodyParams = CastDetailRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
+            guard let self = self else {
+                Logger.debug("PropertySearch API Fetcher nil before complete callback")
+                return
+            }
+
+            switch dataResult {
+            case .success(let data):
+                print(data)
+                do {
+                    let responseEntity = try self.decodeData(data, type: CastDetailEntity.self)
+                    result(.success(responseEntity))
+                } catch {
+                    Logger.debug("Unknow error, return decode failed")
+                    result(.failure(.noData))
+                }
+            case .failure(let networkServicesError):
+                print(networkServicesError)
+            }
+        }
+    }
 }

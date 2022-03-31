@@ -13,6 +13,8 @@ protocol ListMoviesServicesProtocol {
     func getMovieDetail(id: Int, result: @escaping (Result<MovieDetailEntity, Error>) -> Void)
     func getListCasts(id: Int, result: @escaping (Result<ListCastsResponseEntity, Error>) -> Void)
     func getListSimilars(id: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void)
+    func getTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, Error>) -> Void)
+    func getCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, Error>) -> Void)
 }
 
 final class ListMoviesServices {
@@ -81,6 +83,32 @@ extension ListMoviesServices: ListMoviesServicesProtocol {
     
     func getListSimilars(id: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
         listMovieAPIFetcher.fetchListSimilars(id: id) { [weak self] response in
+            switch response {
+            case .success(let entity):
+                Logger.debug(entity)
+                result(.success(entity))
+            case .failure(let error):
+                Logger.debug(error)
+                result(.failure(error))
+            }
+        }
+    }
+    
+    func getTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, Error>) -> Void) {
+        listMovieAPIFetcher.fetchTrailer(id: id) { [weak self] response in
+            switch response {
+            case .success(let entity):
+                Logger.debug(entity)
+                result(.success(entity))
+            case .failure(let error):
+                Logger.debug(error)
+                result(.failure(error))
+            }
+        }
+    }
+    
+    func getCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, Error>) -> Void) {
+        listMovieAPIFetcher.fetchCastDetail(id: id) { [weak self] response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)

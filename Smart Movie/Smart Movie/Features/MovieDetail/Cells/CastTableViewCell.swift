@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol CastTableViewCellDelegate: NSObjectProtocol {
+    func didSelectRowAt(idCast: Int)
+}
+
 class CastTableViewCell: UITableViewCell {
     // MARK: - Variables
     private var presenter = MovieDetailPresenter(model: MovieDetailModel())
     var data: [CastEntity] = []
+    var delegate: CastTableViewCellDelegate?
     
     // MARK: - IBOutlet
     @IBOutlet weak var castCollectionView: UICollectionView!
@@ -47,8 +52,15 @@ extension CastTableViewCell: UICollectionViewDataSource {
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let idCast = data[indexPath.row].id
+        guard let delegate = delegate else {
+            return
+        }
+        delegate.didSelectRowAt(idCast: idCast)
+    }
 }
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension CastTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

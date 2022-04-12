@@ -90,6 +90,13 @@
 		64A321DA27E5BE0D0045D083 /* LoadMoreIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A321D927E5BE0D0045D083 /* LoadMoreIndicator.swift */; };
 		64A321DD27E5C1760045D083 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A321DB27E5C1760045D083 /* FooterCollectionReusableView.swift */; };
 		64A321DE27E5C1760045D083 /* FooterCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A321DC27E5C1760045D083 /* FooterCollectionReusableView.xib */; };
+		64CC956028046B2100D49241 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC955F28046B2100D49241 /* SignInViewController.swift */; };
+		64CC956228046B3B00D49241 /* SignInViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC956128046B3B00D49241 /* SignInViewController.storyboard */; };
+		64CC956428046B5700D49241 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC956328046B5700D49241 /* SignUpViewController.swift */; };
+		64CC956628046B6400D49241 /* SignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC956528046B6400D49241 /* SignUpViewController.storyboard */; };
+		64CC95692805639C00D49241 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC95682805639C00D49241 /* Constant.swift */; };
+		64CC956B280577B800D49241 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC956A280577B800D49241 /* UserEntity.swift */; };
+		64CC956E2805784200D49241 /* UsersAPIFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC956D2805784200D49241 /* UsersAPIFetcher.swift */; };
 		EED691BB27F1CA070074819E /* WatchTrainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED691B927F1CA070074819E /* WatchTrainerViewController.swift */; };
 		EED691BC27F1CA070074819E /* WatchTrainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EED691BA27F1CA070074819E /* WatchTrainerViewController.xib */; };
 /* End PBXBuildFile section */
@@ -195,6 +202,13 @@
 		64A321D927E5BE0D0045D083 /* LoadMoreIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreIndicator.swift; sourceTree = "<group>"; };
 		64A321DB27E5C1760045D083 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		64A321DC27E5C1760045D083 /* FooterCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCollectionReusableView.xib; sourceTree = "<group>"; };
+		64CC955F28046B2100D49241 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		64CC956128046B3B00D49241 /* SignInViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInViewController.storyboard; sourceTree = "<group>"; };
+		64CC956328046B5700D49241 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		64CC956528046B6400D49241 /* SignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpViewController.storyboard; sourceTree = "<group>"; };
+		64CC95682805639C00D49241 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		64CC956A280577B800D49241 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		64CC956D2805784200D49241 /* UsersAPIFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersAPIFetcher.swift; sourceTree = "<group>"; };
 		EED691B927F1CA070074819E /* WatchTrainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchTrainerViewController.swift; sourceTree = "<group>"; };
 		EED691BA27F1CA070074819E /* WatchTrainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchTrainerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,6 +301,7 @@
 		642A49DC27D753E40080478F /* Smart Movie */ = {
 			isa = PBXGroup;
 			children = (
+				64CC95672805638100D49241 /* Constant */,
 				649C408C27E0E438002D5A19 /* Extension */,
 				642A49DD27D753E40080478F /* AppDelegate.swift */,
 				642A49E127D753E40080478F /* ViewController.swift */,
@@ -334,6 +349,8 @@
 		642A4A1127D7553B0080478F /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				64CC955E28043BC400D49241 /* LogIn */,
+				64CC955D28043BB700D49241 /* SignUp */,
 				642A4A4827D9AD8C0080478F /* Tabbar */,
 				642A4A1A27D785AA0080478F /* Discover */,
 				642A4A1B27D785BB0080478F /* Search */,
@@ -376,6 +393,7 @@
 			children = (
 				642A4A1F27D786620080478F /* BaseAPIFetcher.swift */,
 				642A4A2127D786750080478F /* ListMovies */,
+				64CC956C2805780A00D49241 /* Users */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -475,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				642A4A2827D787200080478F /* ListMovieResponseEntity.swift */,
+				64CC956A280577B800D49241 /* UserEntity.swift */,
 			);
 			path = APIEntity;
 			sourceTree = "<group>";
@@ -631,6 +650,40 @@
 			path = HeaderForCastTableView;
 			sourceTree = "<group>";
 		};
+		64CC955D28043BB700D49241 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				64CC956328046B5700D49241 /* SignUpViewController.swift */,
+				64CC956528046B6400D49241 /* SignUpViewController.storyboard */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		64CC955E28043BC400D49241 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				64CC955F28046B2100D49241 /* SignInViewController.swift */,
+				64CC956128046B3B00D49241 /* SignInViewController.storyboard */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		64CC95672805638100D49241 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				64CC95682805639C00D49241 /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		64CC956C2805780A00D49241 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				64CC956D2805784200D49241 /* UsersAPIFetcher.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -758,6 +811,7 @@
 				642A49EA27D753E70080478F /* Assets.xcassets in Resources */,
 				6408BC5827F4090500C5488E /* CastDetailViewController.storyboard in Resources */,
 				642A4A4727D98E480080478F /* Discover.storyboard in Resources */,
+				64CC956628046B6400D49241 /* SignUpViewController.storyboard in Resources */,
 				649C408527E07B57002D5A19 /* GenresTableViewCell.xib in Resources */,
 				6496F46227DC26FB00FFAE09 /* DataViewController.storyboard in Resources */,
 				64A321DE27E5C1760045D083 /* FooterCollectionReusableView.xib in Resources */,
@@ -768,6 +822,7 @@
 				642A49E527D753E40080478F /* Main.storyboard in Resources */,
 				642A4A5627D9B17C0080478F /* Artist.storyboard in Resources */,
 				EED691BC27F1CA070074819E /* WatchTrainerViewController.xib in Resources */,
+				64CC956228046B3B00D49241 /* SignInViewController.storyboard in Resources */,
 				642A4A6627DA2E520080478F /* GridStyleCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,6 +848,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CC95692805639C00D49241 /* Constant.swift in Sources */,
 				6474F38F27DF1AE10040FA05 /* MovieTableViewCell.swift in Sources */,
 				6496F47327DD9EB200FFAE09 /* NowPlayingViewController.swift in Sources */,
 				6474F39527DF1CCB0040FA05 /* SearchPresenter.swift in Sources */,
@@ -809,7 +865,9 @@
 				6496F45A27DB459300FFAE09 /* TabCollectionViewCell.swift in Sources */,
 				6408BC5627F408F900C5488E /* CastDetailViewController.swift in Sources */,
 				642A4A3B27D844810080478F /* AlamofireNetworkService.swift in Sources */,
+				64CC956428046B5700D49241 /* SignUpViewController.swift in Sources */,
 				6429762327E4C4B700EE3B91 /* Favorite+CoreDataClass.swift in Sources */,
+				64CC956028046B2100D49241 /* SignInViewController.swift in Sources */,
 				6496F45C27DB45E800FFAE09 /* TabsView.swift in Sources */,
 				64A212B427E34814001D8C28 /* CastCollectionViewCell.swift in Sources */,
 				64A321DA27E5BE0D0045D083 /* LoadMoreIndicator.swift in Sources */,
@@ -821,6 +879,7 @@
 				642A4A2327D7869A0080478F /* ListMoviesAPIFetcher.swift in Sources */,
 				642A4A6927DA31730080478F /* ListStyleCollectionViewCell.swift in Sources */,
 				642A4A4A27D9ADB90080478F /* TabbarControllerCustom.swift in Sources */,
+				64CC956E2805784200D49241 /* UsersAPIFetcher.swift in Sources */,
 				6474F39327DF1CB80040FA05 /* SearchModel.swift in Sources */,
 				6474F39927DF83810040FA05 /* GenresModel.swift in Sources */,
 				642A49DE27D753E40080478F /* AppDelegate.swift in Sources */,
@@ -833,6 +892,7 @@
 				64A321DD27E5C1760045D083 /* FooterCollectionReusableView.swift in Sources */,
 				64A212AC27E3446A001D8C28 /* CastTableViewCell.swift in Sources */,
 				6474F39D27DF83AB0040FA05 /* GenresPresenter.swift in Sources */,
+				64CC956B280577B800D49241 /* UserEntity.swift in Sources */,
 				6485DCA027E18FF900F7C7EE /* MovieDetailContract.swift in Sources */,
 				642A4A2C27D787AA0080478F /* DiscoverContract.swift in Sources */,
 				6429761F27E48AEE00EE3B91 /* DatabaseManager.swift in Sources */,

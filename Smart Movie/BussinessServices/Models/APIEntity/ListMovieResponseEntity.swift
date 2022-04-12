@@ -260,5 +260,3 @@ struct CastDetailEntity: Codable {
         case profilePath = "profile_path"
     }
 }
-
-

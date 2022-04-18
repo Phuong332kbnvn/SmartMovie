@@ -17,6 +17,7 @@ typealias Handler = (Swift.Result<Any?, APIErrors>) -> Void
 protocol UsersAPIFetcherProtocol {
     func fetchRegister(user: RegisterModel, completionHandler: @escaping (Bool) ->())
     func fetchLogin(user: LoginModel, completionHandler: @escaping Handler)
+    func fetchLogout()
 }
 
 class UsersAPIFetcher {
@@ -67,7 +68,6 @@ extension UsersAPIFetcher: UsersAPIFetcherProtocol {
                 guard let data = data else {
                     return
                 }
-//
                 do {
                     let json = try JSONDecoder().decode(ResponseUserModel.self, from: data)
                     print(json)
@@ -84,6 +84,20 @@ extension UsersAPIFetcher: UsersAPIFetcherProtocol {
             case .failure(let err):
                 print(err.localizedDescription)
                 completionHandler(.failure(.custom(message: errorMessage)))
+            }
+        }
+    }
+    
+    func fetchLogout() {
+        let header: HTTPHeaders = [
+            "user-token": "\(TokenService.share.getToken())"
+        ]
+        AF.request(logout_url, method: .get, headers: header).response { response in
+            switch response.result {
+            case .success(let data):
+                TokenService.share.removeToken()
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }

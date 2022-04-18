@@ -220,6 +220,7 @@
                             <constraint firstItem="zhJ-aX-2tB" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="z5d-5f-ggW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ooH-aU-xVJ"/>
                     <connections>
                         <outlet property="backgroundView" destination="Ddy-Ct-URb" id="0XN-D5-0Ji"/>
                         <outlet property="confirmPasswordTextField" destination="tU7-zP-c2b" id="o8t-fc-xIZ"/>
@@ -232,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31.884057971014496" y="67.633928571428569"/>
+            <point key="canvasLocation" x="942.02898550724649" y="67.633928571428569"/>
         </scene>
     </scenes>
     <resources>

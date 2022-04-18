@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftUI
 
 class ListStyleCollectionViewCell: UICollectionViewCell {
     
@@ -66,7 +67,6 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
     
     func formatDate(_ date: String) -> String {
         let item = date.components(separatedBy: "-")
-
         let month = Int(item[1])
         var monthString: String = ""
         switch month {

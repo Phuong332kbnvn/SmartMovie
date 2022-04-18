@@ -57,6 +57,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func invokeSignInButton(_ sender: UIButton) {
+//        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -69,8 +70,9 @@ class SignUpViewController: UIViewController {
                     // Code in this block will trigger when OK button tapped.
                     print("Ok button tapped")
                     DispatchQueue.main.async
-                        {
-                            self.dismiss(animated: true, completion: nil)
+                    {
+                        self.navigationController?.popViewController(animated: true)
+//                        self.dismiss(animated: true, completion: nil)
                     }
                 }
                 alertController.addAction(OKAction)

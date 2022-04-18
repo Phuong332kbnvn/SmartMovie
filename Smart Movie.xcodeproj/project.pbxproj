@@ -52,6 +52,9 @@
 		642A4A6627DA2E520080478F /* GridStyleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 642A4A6427DA2E520080478F /* GridStyleCollectionViewCell.xib */; };
 		642A4A6927DA31730080478F /* ListStyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A4A6727DA31730080478F /* ListStyleCollectionViewCell.swift */; };
 		642A4A6A27DA31730080478F /* ListStyleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 642A4A6827DA31730080478F /* ListStyleCollectionViewCell.xib */; };
+		642CDE4128097F9D0013557C /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642CDE4028097F9D0013557C /* TokenService.swift */; };
+		642CDE442809BFC50013557C /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 642CDE432809BFC50013557C /* SwiftKeychainWrapper */; };
+		642CDE46280AC8330013557C /* UIApplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642CDE45280AC8330013557C /* UIApplication + Extension.swift */; };
 		6474F38F27DF1AE10040FA05 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474F38D27DF1AE10040FA05 /* MovieTableViewCell.swift */; };
 		6474F39027DF1AE10040FA05 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6474F38E27DF1AE10040FA05 /* MovieTableViewCell.xib */; };
 		6474F39327DF1CB80040FA05 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474F39227DF1CB80040FA05 /* SearchModel.swift */; };
@@ -78,7 +81,7 @@
 		649C408427E07B57002D5A19 /* GenresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C408227E07B57002D5A19 /* GenresTableViewCell.swift */; };
 		649C408527E07B57002D5A19 /* GenresTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 649C408327E07B57002D5A19 /* GenresTableViewCell.xib */; };
 		649C408827E09643002D5A19 /* ListGenresServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C408727E09643002D5A19 /* ListGenresServices.swift */; };
-		649C408E27E0E447002D5A19 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C408D27E0E447002D5A19 /* Extension.swift */; };
+		649C408E27E0E447002D5A19 /* Enum + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C408D27E0E447002D5A19 /* Enum + Extension.swift */; };
 		649C409327E0F244002D5A19 /* GenresDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C409127E0F244002D5A19 /* GenresDetailViewController.swift */; };
 		649C409627E0F258002D5A19 /* GenresDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 649C409527E0F258002D5A19 /* GenresDetailViewController.storyboard */; };
 		64A212AC27E3446A001D8C28 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A212AA27E3446A001D8C28 /* CastTableViewCell.swift */; };
@@ -164,6 +167,8 @@
 		642A4A6427DA2E520080478F /* GridStyleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridStyleCollectionViewCell.xib; sourceTree = "<group>"; };
 		642A4A6727DA31730080478F /* ListStyleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStyleCollectionViewCell.swift; sourceTree = "<group>"; };
 		642A4A6827DA31730080478F /* ListStyleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListStyleCollectionViewCell.xib; sourceTree = "<group>"; };
+		642CDE4028097F9D0013557C /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		642CDE45280AC8330013557C /* UIApplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Extension.swift"; sourceTree = "<group>"; };
 		6474F38D27DF1AE10040FA05 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		6474F38E27DF1AE10040FA05 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		6474F39227DF1CB80040FA05 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
@@ -190,7 +195,7 @@
 		649C408227E07B57002D5A19 /* GenresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresTableViewCell.swift; sourceTree = "<group>"; };
 		649C408327E07B57002D5A19 /* GenresTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresTableViewCell.xib; sourceTree = "<group>"; };
 		649C408727E09643002D5A19 /* ListGenresServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGenresServices.swift; sourceTree = "<group>"; };
-		649C408D27E0E447002D5A19 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		649C408D27E0E447002D5A19 /* Enum + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum + Extension.swift"; sourceTree = "<group>"; };
 		649C409127E0F244002D5A19 /* GenresDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresDetailViewController.swift; sourceTree = "<group>"; };
 		649C409527E0F258002D5A19 /* GenresDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GenresDetailViewController.storyboard; sourceTree = "<group>"; };
 		64A212AA27E3446A001D8C28 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 			files = (
 				6403EE6C27EF6BFA0053C30E /* SDWebImage in Frameworks */,
 				642A4A3527D7BC1F0080478F /* Kingfisher in Frameworks */,
+				642CDE442809BFC50013557C /* SwiftKeychainWrapper in Frameworks */,
 				6403EE6E27EF6BFA0053C30E /* SDWebImageMapKit in Frameworks */,
 				642A4A1927D7848D0080478F /* Alamofire in Frameworks */,
 			);
@@ -301,6 +307,7 @@
 		642A49DC27D753E40080478F /* Smart Movie */ = {
 			isa = PBXGroup;
 			children = (
+				642CDE3F28097F800013557C /* TokenService */,
 				64CC95672805638100D49241 /* Constant */,
 				649C408C27E0E438002D5A19 /* Extension */,
 				642A49DD27D753E40080478F /* AppDelegate.swift */,
@@ -533,6 +540,14 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		642CDE3F28097F800013557C /* TokenService */ = {
+			isa = PBXGroup;
+			children = (
+				642CDE4028097F9D0013557C /* TokenService.swift */,
+			);
+			path = TokenService;
+			sourceTree = "<group>";
+		};
 		6474F39127DF1AE80040FA05 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,8 +630,9 @@
 		649C408C27E0E438002D5A19 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				649C408D27E0E447002D5A19 /* Extension.swift */,
+				649C408D27E0E447002D5A19 /* Enum + Extension.swift */,
 				64A321D927E5BE0D0045D083 /* LoadMoreIndicator.swift */,
+				642CDE45280AC8330013557C /* UIApplication + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -705,6 +721,7 @@
 				642A4A3427D7BC1F0080478F /* Kingfisher */,
 				6403EE6B27EF6BFA0053C30E /* SDWebImage */,
 				6403EE6D27EF6BFA0053C30E /* SDWebImageMapKit */,
+				642CDE432809BFC50013557C /* SwiftKeychainWrapper */,
 			);
 			productName = "Smart Movie";
 			productReference = 642A49DA27D753E40080478F /* Smart Movie.app */;
@@ -783,6 +800,7 @@
 				642A4A1727D7848D0080478F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				642A4A3327D7BC1F0080478F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6403EE6A27EF6BF90053C30E /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				642CDE422809BFC50013557C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 642A49DB27D753E40080478F /* Products */;
 			projectDirPath = "";
@@ -876,6 +894,7 @@
 				642A4A6527DA2E520080478F /* GridStyleCollectionViewCell.swift in Sources */,
 				642A4A2E27D787C30080478F /* DiscoverPresenter.swift in Sources */,
 				6496F46F27DD9E8F00FFAE09 /* UpcommingViewController.swift in Sources */,
+				642CDE46280AC8330013557C /* UIApplication + Extension.swift in Sources */,
 				642A4A2327D7869A0080478F /* ListMoviesAPIFetcher.swift in Sources */,
 				642A4A6927DA31730080478F /* ListStyleCollectionViewCell.swift in Sources */,
 				642A4A4A27D9ADB90080478F /* TabbarControllerCustom.swift in Sources */,
@@ -902,11 +921,12 @@
 				642A4A3227D787F70080478F /* DiscoverModel.swift in Sources */,
 				642A49E827D753E40080478F /* Smart_Movie.xcdatamodeld in Sources */,
 				642A4A3927D844620080478F /* NetworkService.swift in Sources */,
-				649C408E27E0E447002D5A19 /* Extension.swift in Sources */,
+				649C408E27E0E447002D5A19 /* Enum + Extension.swift in Sources */,
 				642A4A5427D9B16A0080478F /* ArtistViewController.swift in Sources */,
 				6496F46727DD9E1F00FFAE09 /* PopularViewController.swift in Sources */,
 				642A4A3027D787E50080478F /* DiscoverViewController.swift in Sources */,
 				642A4A3D27D844A60080478F /* NetworkServiceProtocol.swift in Sources */,
+				642CDE4128097F9D0013557C /* TokenService.swift in Sources */,
 				649C409327E0F244002D5A19 /* GenresDetailViewController.swift in Sources */,
 				6496F46B27DD9E8200FFAE09 /* TopRatedViewController.swift in Sources */,
 			);
@@ -1285,6 +1305,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		642CDE422809BFC50013557C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1307,6 +1335,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 642A4A3327D7BC1F0080478F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		642CDE432809BFC50013557C /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 642CDE422809BFC50013557C /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -16,12 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         RunLoop.current.run(until:  Date(timeIntervalSinceNow: 2.0))
         
-        let storyboard = UIStoryboard(name: "SignInViewController", bundle: nil)
-        guard let rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController else {
-            return false
+        if TokenService.share.checkForLogin() {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            guard let rootViewController = storyboard.instantiateViewController(withIdentifier:"TabbarControllerCustom") as? TabbarControllerCustom else {
+                return false
+            }
+            window?.rootViewController = rootViewController
+        } else {
+            let storyboard = UIStoryboard(name: "SignInViewController", bundle: nil)
+            guard let rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController else {
+                return false
+            }
+            window?.rootViewController = rootViewController
         }
-        self.window?.rootViewController = rootViewController
-        
+        window?.makeKeyAndVisible()
         return true
     }
 

@@ -7,10 +7,6 @@
 
 import Foundation
 
-//https://xxxx.backendless.app/api/users/register
-//https://xxxx.backendless.app/api/users/login
-//https://xxxx.backendless.app/api/users/logout
-
 let subdomain = "api.backendless.com"
 let app_id = "3492EC0C-2CE6-806E-FF11-CD4FA856AA00"
 let api_key = "6D02E696-49FD-4F03-B313-4C566A0687CD"
@@ -25,3 +21,7 @@ let failedRegistrationMessage = "Could not successfully perform this request. Pl
 let errorMessage = "Please try again"
 let errorLoginMessage = "Email or password is incorrected"
 let errorNetworkMessage = "Please check your network connectivity"
+
+
+// MARK: - Key
+let tokenKey = "tokenKey"

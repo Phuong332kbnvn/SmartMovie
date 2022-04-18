@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class SignInViewController: UIViewController {
 
@@ -40,12 +41,21 @@ class SignInViewController: UIViewController {
         UsersAPIFetcher.share.fetchLogin(user: user) { result in
             switch result {
             case .success(let json):
+                guard let json = json else {
+                    return
+                }
                 print(json)
+                
+                let token = (json as! ResponseUserModel).userToken
+                TokenService.share.saveToken(token: token)
+                
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                     guard let discoverViewController = storyboard.instantiateViewController(withIdentifier: "TabbarControllerCustom") as? TabbarControllerCustom else {
                         return
                     }
+//                    self.navigationController?.pushViewController(discoverViewController, animated: true)
+                    discoverViewController.modalPresentationStyle = .overFullScreen
                     self.present(discoverViewController, animated: true, completion: nil)
                 }
             case .failure(let err):
@@ -61,6 +71,9 @@ class SignInViewController: UIViewController {
         guard let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else {
             return
         }
+//        navigationController?.pushViewController(signUpViewController, animated: true)
+        signUpViewController.modalPresentationStyle = .overFullScreen
+        signUpViewController.modalTransitionStyle = .crossDissolve
         present(signUpViewController, animated: true, completion: nil)
     }
     

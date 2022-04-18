@@ -62,8 +62,7 @@ final class TabbarControllerCustom: UITabBarController {
     }
     
     private func customTabbarTitle() {
-    
-            let appearance = UITabBarAppearance()
+        let appearance = UITabBarAppearance()
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "HelveticaNeue-Bold", size: 14)!,NSAttributedString.Key.foregroundColor:UIColor.systemBlue]
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font:UIFont(name: "HelveticaNeue-Bold", size: 12)!,NSAttributedString.Key.foregroundColor:UIColor.gray]
             tabBar.standardAppearance = appearance

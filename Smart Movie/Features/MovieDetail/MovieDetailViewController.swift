@@ -189,6 +189,15 @@ class MovieDetailViewController: UIViewController {
         overviewLabel.numberOfLines = 0
         seeAllButton.isHidden = true
     }
+    
+    @IBAction func invokeWatchReviewButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard.init(name: "ReviewViewController" , bundle: nil)
+        guard let reviewViewController = storyboard.instantiateViewController(withIdentifier: "ReviewViewController") as? ReviewViewController else {
+            return
+        }
+        reviewViewController.idMovie = self.idMovie
+        navigationController?.pushViewController(reviewViewController, animated: true)
+    }
 }
 // MARK: - UITableViewDataSource
 extension MovieDetailViewController: UITableViewDataSource {

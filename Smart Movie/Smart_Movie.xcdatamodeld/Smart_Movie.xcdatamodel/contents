@@ -3,7 +3,11 @@
     <entity name="Favorite" representedClassName="Favorite" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Recent" representedClassName="Recent" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="Favorite" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Recent" positionX="-63" positionY="-9" width="128" height="44"/>
     </elements>
 </model>

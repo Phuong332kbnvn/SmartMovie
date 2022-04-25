@@ -23,3 +23,10 @@ enum PageType {
     case upcomming
     case nowPlaying
 }
+
+enum ArtistCategoryType {
+    case infor
+    case favorite
+    case recentMovie
+    case logout
+}

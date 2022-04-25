@@ -15,6 +15,7 @@ protocol ListMoviesServicesProtocol {
     func getListSimilars(id: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void)
     func getTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, Error>) -> Void)
     func getCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, Error>) -> Void)
+    func getReview(id: Int, result: @escaping (Result<ReviewResponseEntity, Error>) -> Void)
 }
 
 final class ListMoviesServices {
@@ -119,4 +120,18 @@ extension ListMoviesServices: ListMoviesServicesProtocol {
             }
         }
     }
+    
+    func getReview(id: Int, result: @escaping (Result<ReviewResponseEntity, Error>) -> Void) {
+        listMovieAPIFetcher.fetchReview(id: id) { [weak self] response in
+            switch response {
+            case .success(let entity):
+                Logger.debug(entity)
+                result(.success(entity))
+            case .failure(let err):
+                Logger.debug(err)
+                result(.failure(err))
+            }
+        }
+    }
+    
 }

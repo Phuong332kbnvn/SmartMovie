@@ -22,6 +22,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     func fetchListPopularMovies() -> [MovieEntity]? {
         return nil
     }
+    
     func fetchListPopularMovies(page: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
         listMovieServices.getListMovies(type: "popular", page: page) { [weak self] response in
             switch response {

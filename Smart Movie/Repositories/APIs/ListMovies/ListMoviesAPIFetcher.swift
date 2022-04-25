@@ -17,6 +17,7 @@ protocol ListMoviesAPIFetcherProtocol {
     func fetchListSimilars(id: Int, result: @escaping (Result<ListMovieResponseEntity, NetworkServiceError>) -> Void)
     func fetchTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, NetworkServiceError>) -> Void)
     func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, NetworkServiceError>) -> Void)
+    func fetchReview(id: Int, result: @escaping (Result<ReviewResponseEntity, NetworkServiceError>) -> Void)
 }
 
 final class ListMoviesAPIFetcher: BaseAPIFetcher {
@@ -320,6 +321,38 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
                 print(data)
                 do {
                     let responseEntity = try self.decodeData(data, type: CastDetailEntity.self)
+                    result(.success(responseEntity))
+                } catch {
+                    Logger.debug("Unknow error, return decode failed")
+                    result(.failure(.noData))
+                }
+            case .failure(let networkServicesError):
+                print(networkServicesError)
+            }
+        }
+    }
+    
+    func fetchReview(id: Int, result: @escaping (Result<ReviewResponseEntity, NetworkServiceError>) -> Void) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/reviews") else {
+            Logger.debug("URL nil")
+            result(.failure(.noData))
+            return
+        }
+
+        let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
+        // API key get from keychain
+        let bodyParams = ReviewRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
+            guard let self = self else {
+                Logger.debug("PropertySearch API Fetcher nil before complete callback")
+                return
+            }
+
+            switch dataResult {
+            case .success(let data):
+                print(data)
+                do {
+                    let responseEntity = try self.decodeData(data, type: ReviewResponseEntity.self)
                     result(.success(responseEntity))
                 } catch {
                     Logger.debug("Unknow error, return decode failed")

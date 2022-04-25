@@ -40,3 +40,11 @@ struct ResponseUserModel: Codable {
         case objectID = "objectId"
     }
 }
+
+
+// MARK: - Artist Category
+struct ArtistCategory {
+    let icon: String
+    let name: String
+    let type: ArtistCategoryType
+}

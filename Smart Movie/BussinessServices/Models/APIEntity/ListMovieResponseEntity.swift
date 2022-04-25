@@ -25,8 +25,6 @@ struct SearchMovieRequestEntity: Codable {
     let query: String
     let page: Int
 
-    
-
     private enum CodingKeys: String, CodingKey {
         case apiKey = "api_key"
         case query
@@ -106,7 +104,6 @@ struct GenreDetailRequestEntity: Codable {
 // MARK: - Movie Detail Request Entity
 struct MovieDetailRequestEntity: Codable {
     let apiKey: String
-
 
     private enum CodingKeys: String, CodingKey {
         case apiKey = "api_key"
@@ -258,5 +255,58 @@ struct CastDetailEntity: Codable {
         case placeOfBirth = "place_of_birth"
         case popularity
         case profilePath = "profile_path"
+    }
+}
+
+// MARK: - Review Request Entity
+struct ReviewRequestEntity: Codable {
+    let apiKey: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case apiKey = "api_key"
+    }
+}
+
+// MARK: - Review Response Entity
+struct ReviewResponseEntity: Codable {
+    let id, page: Int
+    let results: [AuthorReview]
+    let totalPages, totalResults: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id, page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+}
+
+// MARK: - AuthorReview
+struct AuthorReview: Codable {
+    let author: String
+    let authorDetails: AuthorDetails
+    let content, createdAt, id, updatedAt: String
+    let url: String
+
+    enum CodingKeys: String, CodingKey {
+        case author
+        case authorDetails = "author_details"
+        case content
+        case createdAt = "created_at"
+        case id
+        case updatedAt = "updated_at"
+        case url
+    }
+}
+
+// MARK: - AuthorDetails
+struct AuthorDetails: Codable {
+    let name, username: String
+    let avatarPath: String?
+    let rating: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case name, username
+        case avatarPath = "avatar_path"
+        case rating
     }
 }

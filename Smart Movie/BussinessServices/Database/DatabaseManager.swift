@@ -13,6 +13,7 @@ final class DatabaseManager {
     
     private let modelName = "Smart_Movie"
     private let favoriteEntity = "Favorite"
+    private let lastMovie = "LastMovie"
     
     private lazy var managedObjectModel: NSManagedObjectModel? = {
         

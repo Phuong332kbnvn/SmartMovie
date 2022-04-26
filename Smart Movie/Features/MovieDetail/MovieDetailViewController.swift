@@ -176,14 +176,18 @@ class MovieDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func invokePlayVideoButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard.init(name: "WatchMovieViewController", bundle: nil)
+        guard let watchMovieViewController = storyboard.instantiateViewController(withIdentifier: "WatchMovieViewController") as? WatchMovieViewController else {
+            return
+        }
+        navigationController?.pushViewController(watchMovieViewController, animated: true)
+    }
+    
     @IBAction func invokeWatchTrailerButton(_ sender: UIButton) {
         guard let url = URL(string: "https://www.youtube.com/embed/\(listTrailer[0].key)") else {
             return
         }
-//        let storyboard = UIStoryboard.init(name: "TrailerViewController", bundle: nil)
-//        guard let trailerViewController = storyboard.instantiateViewController(withIdentifier: "TrailerViewController") as? TrailerViewController else {
-//            return
-//        }
         let trailerViewController = WatchTrainerViewController()
         trailerViewController.modalPresentationStyle = .overFullScreen
         trailerViewController.url = url

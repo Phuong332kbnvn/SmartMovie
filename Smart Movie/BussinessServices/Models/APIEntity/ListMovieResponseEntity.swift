@@ -235,25 +235,15 @@ struct CastDetailRequestEntity: Codable {
 
 // MARK: - Cast Detail Entity
 struct CastDetailEntity: Codable {
-    let adult: Bool
-    let alsoKnownAs: [String]
     let biography, birthday: String
-    let gender: Int
-    let homepage: String
     let id: Int
-    let imdbID, knownForDepartment, name, placeOfBirth: String
-    let popularity: Double
+    let name, placeOfBirth: String
     let profilePath: String
 
     enum CodingKeys: String, CodingKey {
-        case adult
-        case alsoKnownAs = "also_known_as"
-        case biography, birthday, gender, homepage, id
-        case imdbID = "imdb_id"
-        case knownForDepartment = "known_for_department"
+        case biography, birthday, id
         case name
         case placeOfBirth = "place_of_birth"
-        case popularity
         case profilePath = "profile_path"
     }
 }
@@ -310,3 +300,33 @@ struct AuthorDetails: Codable {
         case rating
     }
 }
+
+// MARK: - Movie Of Cast Request Entity
+struct MovieOfCastRequestEntity: Codable {
+    let apiKey: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case apiKey = "api_key"
+    }
+}
+
+
+// MARK: - Movie Of Cast Response Entity
+struct MovieOfCastResponseEntity: Codable {
+    let cast: [MovieOfCastEntity]
+    let crew: [MovieOfCastEntity]
+    let id: Int
+}
+
+// MARK: - Movie Of Cast Response Entity
+struct MovieOfCastEntity: Codable {
+    let id: Int
+    let posterPath: String?
+    let title: String?
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case posterPath = "poster_path"
+        case title
+    }
+}
+

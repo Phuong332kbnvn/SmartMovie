@@ -7,6 +7,10 @@
 
 import Foundation
 
+//MARK: - Themoviedb
+let apiKey = "d5b97a6fad46348136d87b78895a0c06"
+
+//MARK: - Backendless
 let subdomain = "api.backendless.com"
 let app_id = "3492EC0C-2CE6-806E-FF11-CD4FA856AA00"
 let api_key = "6D02E696-49FD-4F03-B313-4C566A0687CD"
@@ -25,3 +29,5 @@ let errorNetworkMessage = "Please check your network connectivity"
 
 // MARK: - Key
 let tokenKey = "tokenKey"
+
+

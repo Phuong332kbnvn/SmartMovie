@@ -24,7 +24,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     }
     
     func fetchListPopularMovies(page: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
-        listMovieServices.getListMovies(type: "popular", page: page) { [weak self] response in
+        listMovieServices.getListMovies(type: MovieType.popular.rawValue, page: page) { response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)
@@ -37,7 +37,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     }
     
     func fetchListTopRatedMovies(page: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
-        listMovieServices.getListMovies(type: "top_rated", page: page) { [weak self] response in
+        listMovieServices.getListMovies(type: MovieType.topRate.rawValue, page: page) { response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)
@@ -50,7 +50,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     }
 
     func fetchListUpcommingMovies(page: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
-        listMovieServices.getListMovies(type: "upcoming", page: page) { [weak self] response in
+        listMovieServices.getListMovies(type: MovieType.upcomming.rawValue, page: page) { response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)
@@ -63,7 +63,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     }
     // Asyn
     func fetchListNowPlayingMovies(page: Int, result: @escaping (Result<ListMovieResponseEntity, Error>) -> Void) {
-        listMovieServices.getListMovies(type: "now_playing", page: page) { [weak self] response in
+        listMovieServices.getListMovies(type: MovieType.nowPlaying.rawValue, page: page) { response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)
@@ -76,7 +76,7 @@ extension DiscoverModel: DiscoverModelProtocol {
     }
    
     func fetchMovieDetail(id: Int, result: @escaping (Result<MovieDetailEntity, Error>) -> Void) {
-        listMovieServices.getMovieDetail(id: id) { [weak self] response in
+        listMovieServices.getMovieDetail(id: id) { response in
             switch response {
             case .success(let entity):
                 Logger.debug(entity)

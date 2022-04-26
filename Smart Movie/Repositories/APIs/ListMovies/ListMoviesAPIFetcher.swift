@@ -18,6 +18,7 @@ protocol ListMoviesAPIFetcherProtocol {
     func fetchTrailer(id: Int, result: @escaping (Result<TrailerResponseEntity, NetworkServiceError>) -> Void)
     func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, NetworkServiceError>) -> Void)
     func fetchReview(id: Int, result: @escaping (Result<ReviewResponseEntity, NetworkServiceError>) -> Void)
+    func fetchMovieOfCast(id: Int, result: @escaping (Result<MovieOfCastResponseEntity, NetworkServiceError>) -> Void)
 }
 
 final class ListMoviesAPIFetcher: BaseAPIFetcher {
@@ -47,7 +48,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = ListMovieRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06", language: "en", page: page)
+        let bodyParams = ListMovieRequestEntity(apiKey: apiKey, language: "en", page: page)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -79,7 +80,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = SearchMovieRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06", query: query, page: 1)
+        let bodyParams = SearchMovieRequestEntity(apiKey: apiKey, query: query, page: 1)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -114,7 +115,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = ListGenresRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = ListGenresRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -147,7 +148,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = GenreDetailRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06", withGenres: id)
+        let bodyParams = GenreDetailRequestEntity(apiKey: apiKey, withGenres: id)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -180,7 +181,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = MovieDetailRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = MovieDetailRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -212,7 +213,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = ListCastsRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = ListCastsRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -244,7 +245,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = ListCastsRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = ListCastsRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -276,7 +277,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = TrailerRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = TrailerRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -300,7 +301,6 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
     }
     
     func fetchCastDetail(id: Int, result: @escaping (Result<CastDetailEntity, NetworkServiceError>) -> Void) {
-//    https://api.themoviedb.org/3/person/25540?api_key=d5b97a6fad46348136d87b78895a0c06
         guard let url = URL(string: "https://api.themoviedb.org/3/person/\(id)") else {
             Logger.debug("URL nil")
             result(.failure(.noData))
@@ -309,7 +309,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = CastDetailRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = CastDetailRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -341,7 +341,7 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
 
         let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
         // API key get from keychain
-        let bodyParams = ReviewRequestEntity(apiKey: "d5b97a6fad46348136d87b78895a0c06")
+        let bodyParams = ReviewRequestEntity(apiKey: apiKey)
         networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
             guard let self = self else {
                 Logger.debug("PropertySearch API Fetcher nil before complete callback")
@@ -353,6 +353,36 @@ extension ListMoviesAPIFetcher: ListMoviesAPIFetcherProtocol {
                 print(data)
                 do {
                     let responseEntity = try self.decodeData(data, type: ReviewResponseEntity.self)
+                    result(.success(responseEntity))
+                } catch {
+                    Logger.debug("Unknow error, return decode failed")
+                    result(.failure(.noData))
+                }
+            case .failure(let networkServicesError):
+                print(networkServicesError)
+            }
+        }
+    }
+    
+    func fetchMovieOfCast(id: Int, result: @escaping (Result<MovieOfCastResponseEntity, NetworkServiceError>) -> Void) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/person/\(id)/combined_credits") else {
+            Logger.debug("URL nil")
+            result(.failure(.noData))
+            return
+        }
+        
+        let requestInfo = RequestInfo(urlInfo: url, httpMethod: .get)
+        let bodyParams = MovieOfCastRequestEntity(apiKey: apiKey)
+        networkService.requestAPI(info: requestInfo, params: bodyParams) { [weak self] dataResult in
+            guard let self = self else {
+                Logger.debug("PropertySearch API Fetcher nil before complete callback")
+                return
+            }
+            switch dataResult {
+            case .success(let data):
+                print(data)
+                do {
+                    let responseEntity = try self.decodeData(data, type: MovieOfCastResponseEntity.self)
                     result(.success(responseEntity))
                 } catch {
                     Logger.debug("Unknow error, return decode failed")

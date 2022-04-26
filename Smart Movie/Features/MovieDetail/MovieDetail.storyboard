@@ -164,6 +164,18 @@
                                                             <action selector="invokeWatchReviewButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Wni-Mi-k9G"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pp-pQ-H0b">
+                                                        <rect key="frame" x="0.0" y="217" width="82" height="33"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Xem Phim">
+                                                            <color key="titleColor" red="0.85053559922680411" green="0.27729879659376117" blue="0.21471096282360977" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="invokePlayVideoButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GSa-sR-N8W"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -176,6 +188,8 @@
                                                     <constraint firstItem="PyZ-hL-fe7" firstAttribute="top" secondItem="RHP-Pa-fg1" secondAttribute="bottom" id="Vf3-1p-LMk"/>
                                                     <constraint firstAttribute="trailing" secondItem="VDd-wA-ZKB" secondAttribute="trailing" id="bgG-AA-6ya"/>
                                                     <constraint firstItem="VDd-wA-ZKB" firstAttribute="leading" secondItem="8kJ-bm-zZC" secondAttribute="leading" id="cgA-Zv-jNh"/>
+                                                    <constraint firstItem="9pp-pQ-H0b" firstAttribute="leading" secondItem="8kJ-bm-zZC" secondAttribute="leading" id="fkc-g7-0VG"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9pp-pQ-H0b" secondAttribute="bottom" id="hFr-Ag-liy"/>
                                                     <constraint firstAttribute="trailing" secondItem="qI0-Rn-Grt" secondAttribute="trailing" id="hZg-Aa-7Zw"/>
                                                     <constraint firstItem="Zeh-MF-9pN" firstAttribute="leading" secondItem="8kJ-bm-zZC" secondAttribute="leading" id="i0P-c1-OsC"/>
                                                     <constraint firstItem="RHP-Pa-fg1" firstAttribute="top" secondItem="8kJ-bm-zZC" secondAttribute="top" id="lYt-ld-Tpu"/>

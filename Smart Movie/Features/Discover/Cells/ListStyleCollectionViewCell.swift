@@ -7,12 +7,16 @@
 
 import UIKit
 import Kingfisher
-import SwiftUI
 
 class ListStyleCollectionViewCell: UICollectionViewCell {
     
     private var presenter = DiscoverPresenter(model: DiscoverModel())
     var idMovie: Int = 0
+    var name: String = ""
+    var posterPath: String = ""
+    var time: Int = 0
+    var overview: String = ""
+    
     
     @IBOutlet weak var viewBound: UIView!
     @IBOutlet weak var movieImageView: UIImageView!
@@ -63,6 +67,71 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
         } else {
             self.starImageView.tintColor = .gray
         }
+        
+        name = data.title
+        posterPath = data.posterPath
+        time = presenter.getRunTimeMovie(data: data, id: data.id)
+        overview = data.overview
+    }
+    
+    func bindDataForFavorite(data: Favorite) {
+        movieNameLabel.font = UIFont(name: "American Typewriter", size: self.frame.size.height/9)
+        timeLabel.font = UIFont.systemFont(ofSize: self.frame.size.height/10)
+        overviewLabel.font = UIFont.systemFont(ofSize: self.frame.size.height/10)
+        
+        movieNameLabel.text = data.name
+        timeLabel.text = self.formatRunTime(Int(data.time))
+        overviewLabel.text = data.overview
+        
+        if let url = URL(string: "https://image.tmdb.org/t/p/w500\(data.posterPath ?? "")") {
+        let processor = DownsamplingImageProcessor(size: movieImageView.bounds.size)
+                    |> RoundCornerImageProcessor(cornerRadius: 5)
+        movieImageView.kf.setImage(with: url,
+                                            placeholder: nil,
+                                            options: [
+                                                .processor(processor),
+                                                .scaleFactor(UIScreen.main.scale),
+                                                .transition(.fade(1)),
+                                                .cacheOriginalImage
+                                            ])
+                }
+        
+        if DatabaseManager.share.checkFavorite(with: Int(data.id)) {
+            self.starImageView.tintColor = .systemYellow
+        } else {
+            self.starImageView.tintColor = .gray
+        }
+        
+    }
+    
+    func bindDataForRecent(data: Recent) {
+        movieNameLabel.font = UIFont(name: "American Typewriter", size: self.frame.size.height/9)
+        timeLabel.font = UIFont.systemFont(ofSize: self.frame.size.height/10)
+        overviewLabel.font = UIFont.systemFont(ofSize: self.frame.size.height/10)
+        
+        movieNameLabel.text = data.name
+        timeLabel.text = self.formatRunTime(Int(data.time))
+        overviewLabel.text = data.overview
+        
+        if let url = URL(string: "https://image.tmdb.org/t/p/w500\(data.posterPath ?? "")") {
+        let processor = DownsamplingImageProcessor(size: movieImageView.bounds.size)
+                    |> RoundCornerImageProcessor(cornerRadius: 5)
+        movieImageView.kf.setImage(with: url,
+                                            placeholder: nil,
+                                            options: [
+                                                .processor(processor),
+                                                .scaleFactor(UIScreen.main.scale),
+                                                .transition(.fade(1)),
+                                                .cacheOriginalImage
+                                            ])
+                }
+        
+        if DatabaseManager.share.checkFavorite(with: Int(data.id)) {
+            self.starImageView.tintColor = .systemYellow
+        } else {
+            self.starImageView.tintColor = .gray
+        }
+        
     }
     
     func formatDate(_ date: String) -> String {
@@ -113,7 +182,7 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
             DatabaseManager.share.deleteFavorite(with: idMovie)
             self.starImageView.tintColor = .gray
         } else {
-            DatabaseManager.share.addFavorite(id: idMovie)
+            DatabaseManager.share.addFavorite(id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
             self.starImageView.tintColor = .systemYellow
         }
     }

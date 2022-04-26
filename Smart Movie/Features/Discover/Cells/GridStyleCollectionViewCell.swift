@@ -12,6 +12,10 @@ class GridStyleCollectionViewCell: UICollectionViewCell {
     
     private var presenter = DiscoverPresenter(model: DiscoverModel())
     var idMovie: Int = 0
+    var name: String = ""
+    var posterPath = ""
+    var time: Int = 0
+    var overview: String = ""
     
     @IBOutlet weak var viewBound: UIView!
     @IBOutlet weak var movieImageView: UIImageView!
@@ -60,6 +64,11 @@ class GridStyleCollectionViewCell: UICollectionViewCell {
         } else {
             self.starImageView.tintColor = .gray
         }
+        
+        name = data.title
+        posterPath = data.posterPath
+        time = presenter.getRunTimeMovie(data: data, id: data.id)
+        overview = data.overview
     }
     
     
@@ -76,7 +85,7 @@ class GridStyleCollectionViewCell: UICollectionViewCell {
             DatabaseManager.share.deleteFavorite(with: idMovie)
             self.starImageView.tintColor = .gray
         } else {
-            DatabaseManager.share.addFavorite(id: idMovie)
+            DatabaseManager.share.addFavorite(id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
             self.starImageView.tintColor = .systemYellow
         }
     }

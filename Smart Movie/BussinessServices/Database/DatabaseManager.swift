@@ -13,7 +13,7 @@ final class DatabaseManager {
     
     private let modelName = "Smart_Movie"
     private let favoriteEntity = "Favorite"
-    private let lastMovie = "LastMovie"
+    private let recentEntity = "Recent"
     
     private lazy var managedObjectModel: NSManagedObjectModel? = {
         
@@ -68,11 +68,16 @@ final class DatabaseManager {
     }
 }
 
+// MARK: - Extension DatabaseManage
 extension DatabaseManager {
     
-    func addFavorite(id: Int) -> Bool {
+    func addFavorite(id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
         let entity = NSEntityDescription.insertNewObject(forEntityName: favoriteEntity, into: manageObjectContext) as! Favorite
         entity.id = Int64(id)
+        entity.name = name
+        entity.posterPath = posterPath
+        entity.time = Int64(time)
+        entity.overview = overview
         return saveContext()
     }
     
@@ -92,7 +97,7 @@ extension DatabaseManager {
         do {
             let favorites = try manageObjectContext.fetch(fetchRequest)
             for favorite in favorites {
-                try manageObjectContext.delete(favorite)
+                manageObjectContext.delete(favorite)
             }
         } catch let error {
             debugPrint("Error: delete contact \(error)")
@@ -112,5 +117,54 @@ extension DatabaseManager {
         }
         
         return false
+    }
+    
+    func addRecent(id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: recentEntity, into: manageObjectContext) as! Recent
+        entity.id = Int64(id)
+        entity.name = name
+        entity.posterPath = posterPath
+        entity.time = Int64(time)
+        entity.overview = overview
+        return saveContext()
+    }
+    
+    func getListRecent() -> [Recent] {
+        let fetchRequest = Recent.fetchRequest()
+        do {
+            return try manageObjectContext.fetch(fetchRequest)
+        } catch let error {
+            debugPrint("Error: get list recent \(error)")
+        }
+        return []
+    }
+    
+    func checkRecent(with id: Int) -> Bool {
+        let fetchRequest = Recent.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        do {
+            if let recent = try manageObjectContext.fetch(fetchRequest).first{
+                return true
+            }
+        } catch let error {
+            debugPrint("Error: delete contact \(error)")
+        }
+        
+        return false
+    }
+    
+    func deleteRecent(with id: Int) {
+        let fetchRequest = Recent.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %id", id)
+        do {
+            let recents = try manageObjectContext.fetch(fetchRequest)
+            for recent in recents {
+                manageObjectContext.delete(recent)
+            }
+        } catch let error {
+            debugPrint("Error: delete contact \(error)")
+        }
+        
+        _ = saveContext()
     }
 }

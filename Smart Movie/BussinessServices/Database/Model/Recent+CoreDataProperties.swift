@@ -1,5 +1,5 @@
 //
-//  Favorite+CoreDataProperties.swift
+//  Recent+CoreDataProperties.swift
 //  Smart Movie
 //
 //  Created by Phuong on 25/04/2022.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Favorite {
+extension Recent {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Favorite> {
-        return NSFetchRequest<Favorite>(entityName: "Favorite")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Recent> {
+        return NSFetchRequest<Recent>(entityName: "Recent")
     }
 
     @NSManaged public var id: Int64
@@ -24,6 +24,6 @@ extension Favorite {
 
 }
 
-extension Favorite : Identifiable {
+extension Recent : Identifiable {
 
 }

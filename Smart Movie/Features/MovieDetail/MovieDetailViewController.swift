@@ -96,6 +96,11 @@ class MovieDetailViewController: UIViewController {
                                                     .cacheOriginalImage
                                                 ])
             }
+            
+            if DatabaseManager.share.checkRecent(with: data.id) {
+                DatabaseManager.share.deleteRecent(with: data.id)
+            }
+            DatabaseManager.share.addRecent(id: data.id, name: data.title, posterPath: data.posterPath, time: data.runtime, overview: data.overview)
         }
     }
     

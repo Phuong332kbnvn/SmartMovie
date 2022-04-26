@@ -14,8 +14,7 @@ class ListMovieViewController: UIViewController {
     @IBOutlet private weak var listMovieCollectionView: UICollectionView!
     
     private var favoriteMovies: [Favorite] = []
-    private var favoriteMoviesEntity: [MovieDetailEntity] = []
-//    private var recentMovies: [Favorite] = []
+    private var recentMovies: [Recent] = []
     var state: ArtistCategoryType = .favorite
     var listName: String = ""
     
@@ -28,6 +27,12 @@ class ListMovieViewController: UIViewController {
         setupData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        setupData()
+        listMovieCollectionView.reloadData()
+    }
+    
     private func setupCollectionView() {
         listMovieCollectionView.dataSource = self
         listMovieCollectionView.delegate = self
@@ -38,10 +43,7 @@ class ListMovieViewController: UIViewController {
     private func setupData() {
         listNameLabel.text = listName
         favoriteMovies = DatabaseManager.share.getListFavorite()
-        for movie in favoriteMovies {
-            presenter.fetchMovie(id: Int(movie.id))
-            favoriteMoviesEntity = presenter.movies
-        }
+        recentMovies = DatabaseManager.share.getListRecent()
     }
 
     @IBAction func invokeBackButton(_ sender: UIButton) {
@@ -55,9 +57,9 @@ extension ListMovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch state {
         case .favorite:
-            return favoriteMoviesEntity.count
-        case .recentMovie:
-            return 0
+            return favoriteMovies.count
+        case .recent:
+            return recentMovies.count
         default:
             return 0
         }
@@ -70,13 +72,12 @@ extension ListMovieViewController: UICollectionViewDataSource {
         
         switch state {
         case .favorite:
-//            presenter.fetchMovie(id: Int(favoriteMovies[indexPath.row].id))
-            let data = favoriteMoviesEntity[indexPath.row]
-            cell.movieNameLabel.text = data.title
+            cell.bindDataForFavorite(data: favoriteMovies[indexPath.row])
+        case .recent:
+            cell.bindDataForRecent(data: recentMovies[indexPath.row])
         default:
             return UICollectionViewCell()
         }
-        
         return cell
     }
 }
@@ -91,6 +92,8 @@ extension ListMovieViewController: UICollectionViewDelegate {
         switch state {
         case .favorite:
             viewController.idMovie = Int(favoriteMovies[indexPath.row].id)
+        case .recent:
+            viewController.idMovie = Int(recentMovies[indexPath.row].id)
         default:
             return
         }
@@ -102,7 +105,7 @@ extension ListMovieViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ListMovieViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: collectionView.frame.height/4.5)
+        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height/6)
     }
 }
 

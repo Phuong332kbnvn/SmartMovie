@@ -27,6 +27,6 @@ enum PageType {
 enum ArtistCategoryType {
     case infor
     case favorite
-    case recentMovie
+    case recent
     case logout
 }

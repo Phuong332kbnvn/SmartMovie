@@ -15,10 +15,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-3" translatesAutoresizingMaskIntoConstraints="NO" id="tRQ-EB-hHp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundTop" translatesAutoresizingMaskIntoConstraints="NO" id="tRQ-EB-hHp">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image-4" translatesAutoresizingMaskIntoConstraints="NO" id="aHp-T6-cJM">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundBottom" translatesAutoresizingMaskIntoConstraints="NO" id="aHp-T6-cJM">
                                 <rect key="frame" x="0.0" y="448" width="414" height="448"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5t7-zB-QlS">
@@ -73,7 +73,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image-3" width="564" height="563"/>
-        <image name="Image-4" width="564" height="564"/>
+        <image name="backgroundBottom" width="564" height="564"/>
+        <image name="backgroundTop" width="564" height="563"/>
     </resources>
 </document>

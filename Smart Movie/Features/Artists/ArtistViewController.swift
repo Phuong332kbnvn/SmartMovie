@@ -32,10 +32,10 @@ class ArtistViewController: UIViewController {
     
     private func setupData() {
         listCategory = [
-            ArtistCategory(icon: "person.fill", name: "Thông tin cá nhân", type: .infor),
-            ArtistCategory(icon: "heart.fill", name: "Phim yêu thích", type: .favorite),
-            ArtistCategory(icon: "list.bullet.rectangle.portrait.fill", name: "Phim vừa xem", type: .recentMovie),
-            ArtistCategory(icon: "rectangle.portrait.and.arrow.right.fill", name: "Đăng suất", type: .logout)
+            ArtistCategory(icon: "person.fill", name: "Profile", type: .infor),
+            ArtistCategory(icon: "heart.fill", name: "Favorite", type: .favorite),
+            ArtistCategory(icon: "list.bullet.rectangle.portrait.fill", name: "Recent", type: .recent),
+            ArtistCategory(icon: "rectangle.portrait.and.arrow.right.fill", name: "Log out", type: .logout)
         ]
     }
     
@@ -70,22 +70,26 @@ extension ArtistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch listCategory[indexPath.row].type {
         case .infor:
-            print("infor")
+            let storyboard = UIStoryboard.init(name: "ProfileViewController", bundle: nil)
+            guard let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {
+                return
+            }
+            navigationController?.pushViewController(viewController, animated: true)
         case .favorite:
             let storyboard = UIStoryboard.init(name: "ListMovieViewController", bundle: nil)
             guard let viewController = storyboard.instantiateViewController(withIdentifier: "ListMovieViewController") as? ListMovieViewController else {
                 return
             }
             viewController.state = .favorite
-            viewController.listName = "Favorite"
+            viewController.listName = listCategory[indexPath.row].name
             navigationController?.pushViewController(viewController, animated: true)
-        case .recentMovie:
+        case .recent:
             let storyboard = UIStoryboard.init(name: "ListMovieViewController", bundle: nil)
             guard let viewController = storyboard.instantiateViewController(withIdentifier: "ListMovieViewController") as? ListMovieViewController else {
                 return
             }
-            viewController.state = .recentMovie
-            viewController.listName = "Recent Movie"
+            viewController.state = .recent
+            viewController.listName = listCategory[indexPath.row].name
             navigationController?.pushViewController(viewController, animated: true)
         case .logout:
             logout(title: "Log Out", messsage: "Do you want log out?")

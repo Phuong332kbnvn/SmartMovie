@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,19 +25,12 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mc2-2f-d8W">
-                                        <rect key="frame" x="364" y="20.5" width="40" height="38.5"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="mc2-2f-d8W" firstAttribute="height" secondItem="vVb-RQ-0l6" secondAttribute="height" multiplier="1/2" id="0FI-bm-z4c"/>
                                     <constraint firstAttribute="trailing" secondItem="sTV-mn-IzQ" secondAttribute="trailing" id="PSs-Lv-L5Q"/>
                                     <constraint firstItem="sTV-mn-IzQ" firstAttribute="leading" secondItem="vVb-RQ-0l6" secondAttribute="leading" id="ReP-qY-S8s"/>
-                                    <constraint firstItem="mc2-2f-d8W" firstAttribute="width" secondItem="vVb-RQ-0l6" secondAttribute="height" multiplier="1/2" id="Tcc-VV-abG"/>
-                                    <constraint firstItem="mc2-2f-d8W" firstAttribute="centerY" secondItem="vVb-RQ-0l6" secondAttribute="centerY" id="WtY-gT-cMR"/>
                                     <constraint firstItem="sTV-mn-IzQ" firstAttribute="top" secondItem="vVb-RQ-0l6" secondAttribute="top" id="fyq-hr-Ar7"/>
-                                    <constraint firstAttribute="trailing" secondItem="mc2-2f-d8W" secondAttribute="trailing" constant="10" id="qHE-xy-zlp"/>
                                     <constraint firstAttribute="height" constant="80" id="u44-6I-PFK"/>
                                     <constraint firstAttribute="bottom" secondItem="sTV-mn-IzQ" secondAttribute="bottom" id="yFO-78-leE"/>
                                 </constraints>
@@ -91,7 +83,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -57,6 +57,11 @@ extension ArtistViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtistTableViewCell") as? ArtistTableViewCell else {
             return UITableViewCell()
         }
+        if listCategory[indexPath.row].type == .logout {
+            cell.state = false
+        } else {
+            cell.state = true
+        }
         cell.bindData(data: listCategory[indexPath.row])
         return cell
     }
@@ -64,7 +69,7 @@ extension ArtistViewController: UITableViewDataSource {
 
 extension ArtistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

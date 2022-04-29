@@ -20,6 +20,12 @@ struct LoginModel: Encodable {
     let password: String
 }
 
+// MARK: - Change Password
+struct ChangePassword: Encodable {
+    let oldPassword: String
+    let newPassword: String
+}
+
 // MARK: - Response User Model
 struct ResponseUserModel: Codable {
     let lastLogin: Int

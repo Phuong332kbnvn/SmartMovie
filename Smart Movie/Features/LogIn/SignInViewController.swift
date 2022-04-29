@@ -49,15 +49,17 @@ class SignInViewController: UIViewController {
                 let token = (json as! ResponseUserModel).userToken
                 TokenService.share.saveToken(token: token)
                 
-                DispatchQueue.main.async {
-                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                    guard let discoverViewController = storyboard.instantiateViewController(withIdentifier: "TabbarControllerCustom") as? TabbarControllerCustom else {
-                        return
-                    }
-//                    self.navigationController?.pushViewController(discoverViewController, animated: true)
-                    discoverViewController.modalPresentationStyle = .overFullScreen
-                    self.present(discoverViewController, animated: true, completion: nil)
+                let fullName = (json as! ResponseUserModel).name
+                UserDefaults.standard.set(fullName, forKey: fullnameUser)
+                UserDefaults.standard.set(email, forKey: emailUser)
+                
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                guard let discoverViewController = storyboard.instantiateViewController(withIdentifier: "TabbarControllerCustom") as? TabbarControllerCustom else {
+                    return
                 }
+                discoverViewController.modalPresentationStyle = .overFullScreen
+                self.present(discoverViewController, animated: true, completion: nil)
+                
             case .failure(let err):
                 print(err.localizedDescription)
                 self.alertMessage(title: "Oops", message: errorLoginMessage)

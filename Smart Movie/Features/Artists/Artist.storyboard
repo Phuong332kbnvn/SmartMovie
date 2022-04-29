@@ -92,6 +92,7 @@
                     <connections>
                         <outlet property="artistTableView" destination="kF6-bt-clv" id="wzA-g6-EX3"/>
                         <outlet property="avatarImageView" destination="3Y0-b7-Q5m" id="dPm-yR-0S1"/>
+                        <outlet property="fullNameLabel" destination="UKz-au-Yoz" id="aRA-Cr-xhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

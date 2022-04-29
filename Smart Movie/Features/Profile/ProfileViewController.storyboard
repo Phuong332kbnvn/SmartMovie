@@ -164,8 +164,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cE9-hp-xcn">
                                 <rect key="frame" x="15" y="422" width="384" height="46"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxm-dw-XXy">
-                                        <rect key="frame" x="0.0" y="13" width="104.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxm-dw-XXy">
+                                        <rect key="frame" x="0.0" y="13" width="135.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -233,6 +233,18 @@
                                     <constraint firstItem="PXD-SU-YKO" firstAttribute="centerY" secondItem="ck6-tz-Zhc" secondAttribute="centerY" id="wXx-jk-nZ1"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etS-Nj-dn8">
+                                <rect key="frame" x="147" y="584" width="121" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Save password"/>
+                                <connections>
+                                    <action selector="invokeSavePasswordButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="K4R-bi-VUi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -271,6 +283,14 @@
                             <constraint firstItem="UuG-pU-QK9" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="zCm-11-doY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="PXD-SU-YKO" id="4LR-AP-J76"/>
+                        <outlet property="emailTextField" destination="noh-I6-Uko" id="0MZ-s3-YUa"/>
+                        <outlet property="firstNameTextField" destination="zQG-CQ-Fhg" id="SRN-Ne-h3r"/>
+                        <outlet property="lastNameTextField" destination="43J-v1-G44" id="Kxn-tl-5EU"/>
+                        <outlet property="newPasswordTextField" destination="mNi-zs-wm6" id="Kak-SM-Cd4"/>
+                        <outlet property="oldPasswordTextField" destination="gbP-Ba-F7t" id="T5p-IC-w0w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

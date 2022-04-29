@@ -12,6 +12,7 @@ class ArtistViewController: UIViewController {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var artistTableView: UITableView!
+    @IBOutlet weak var fullNameLabel: UILabel!
     
     private var listCategory: [ArtistCategory] = []
     
@@ -31,6 +32,7 @@ class ArtistViewController: UIViewController {
     }
     
     private func setupData() {
+        fullNameLabel.text = UserDefaults.standard.string(forKey: fullnameUser)
         listCategory = [
             ArtistCategory(icon: "person.fill", name: "Profile", type: .infor),
             ArtistCategory(icon: "heart.fill", name: "Favorite", type: .favorite),
@@ -107,13 +109,7 @@ extension ArtistViewController {
         let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
         let YesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
             UsersAPIFetcher.share.fetchLogout()
-            let storyboard = UIStoryboard.init(name: "SignInViewController", bundle: nil)
-                guard let signInViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController else {
-                return
-            }
-            signInViewController.modalPresentationStyle = .overFullScreen
-            signInViewController.modalTransitionStyle = .crossDissolve
-            self.present(signInViewController, animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
         }
         let NoAction = UIAlertAction(title: "No", style: .cancel) { (action:UIAlertAction!) in
             

@@ -71,7 +71,6 @@ extension UsersAPIFetcher: UsersAPIFetcherProtocol {
                 do {
                     let json = try JSONDecoder().decode(ResponseUserModel.self, from: data)
                     print(json)
-//                    let json = try JSONSerialization.jsonObject(with: data, options: [])
                     if response.response?.statusCode == 200 {
                         completionHandler(.success(json))
                     } else {
@@ -98,6 +97,39 @@ extension UsersAPIFetcher: UsersAPIFetcherProtocol {
                 TokenService.share.removeToken()
             case .failure(let err):
                 print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchChangePassword(user: ChangePassword, completionHandler: @escaping (Bool) -> ()) {
+        let header: HTTPHeaders = [
+            "Content-Type" : "application/json",
+            "Accept" : "application/json",
+            "user-token": "\(TokenService.share.getToken())"
+        ]
+        
+        AF.request(changePassword_url, method: .post, parameters: user, encoder: JSONParameterEncoder.default, headers: header).response { response in
+            debugPrint(response)
+            switch response.result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    if response.response?.statusCode == 200 {
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completionHandler(false)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completionHandler(false)
             }
         }
     }

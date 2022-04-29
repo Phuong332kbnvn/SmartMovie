@@ -80,10 +80,6 @@ extension ListMovieViewController: UICollectionViewDataSource {
         }
         return cell
     }
-}
-
-// MARK: - UICollectionViewDelegate
-extension ListMovieViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard.init(name: "MovieDetail", bundle: nil)
         guard let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
@@ -100,6 +96,26 @@ extension ListMovieViewController: UICollectionViewDelegate {
         
         navigationController?.pushViewController(viewController, animated: true)
     }
+}
+
+// MARK: - UICollectionViewDelegate
+extension ListMovieViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let storyboard = UIStoryboard.init(name: "MovieDetail", bundle: nil)
+//        guard let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else {
+//            return
+//        }
+//        switch state {
+//        case .favorite:
+//            viewController.idMovie = Int(favoriteMovies[indexPath.row].id)
+//        case .recent:
+//            viewController.idMovie = Int(recentMovies[indexPath.row].id)
+//        default:
+//            return
+//        }
+//        
+//        navigationController?.pushViewController(viewController, animated: true)
+//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

@@ -23,28 +23,17 @@ struct LoginModel: Encodable {
 // MARK: - Response User Model
 struct ResponseUserModel: Codable {
     let lastLogin: Int
-    let userStatus: String
     let created: Int
-    let accountType, ownerID, socialAccount: String
-    let name, welcomeClass, blUserLocale, userToken: String
-    let email, objectID: String
+    let id: String
+    let name, userToken: String
+    let email: String
 
     enum CodingKeys: String, CodingKey {
-        case lastLogin, userStatus, created, accountType
-        case ownerID = "ownerId"
-        case socialAccount, name
-        case welcomeClass = "___class"
-        case blUserLocale
+        case lastLogin, created
+        case id = "ownerId"
+        case name
         case userToken = "user-token"
         case email
-        case objectID = "objectId"
     }
 }
 
-
-// MARK: - Artist Category
-struct ArtistCategory {
-    let icon: String
-    let name: String
-    let type: ArtistCategoryType
-}

@@ -59,7 +59,7 @@ class GridStyleCollectionViewCell: UICollectionViewCell {
         }
         
         idMovie = data.id
-        if DatabaseManager.share.checkFavorite(with: data.id) {
+        if DatabaseManager.share.checkFavorite(with: data.id, of: idOfUser ?? "") {
             self.starImageView.tintColor = .systemYellow
         } else {
             self.starImageView.tintColor = .gray
@@ -81,11 +81,11 @@ class GridStyleCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {
-        if DatabaseManager.share.checkFavorite(with: idMovie){
-            DatabaseManager.share.deleteFavorite(with: idMovie)
+        if DatabaseManager.share.checkFavorite(with: idMovie, of: idOfUser ?? ""){
+            DatabaseManager.share.deleteFavorite(with: idMovie, of: idOfUser ?? "")
             self.starImageView.tintColor = .gray
         } else {
-            DatabaseManager.share.addFavorite(id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
+            DatabaseManager.share.addFavorite(idUser: idOfUser ?? "", id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
             self.starImageView.tintColor = .systemYellow
         }
     }

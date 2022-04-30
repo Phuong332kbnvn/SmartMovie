@@ -32,6 +32,7 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
         viewBound.layer.shadowColor = UIColor.black.cgColor
         viewBound.layer.shadowOpacity = 0.3
         viewBound.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
     }
     
     func bindData(data: MovieEntity) {
@@ -62,7 +63,7 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
         }
         
         idMovie = data.id
-        if DatabaseManager.share.checkFavorite(with: data.id) {
+        if DatabaseManager.share.checkFavorite(with: data.id, of: idOfUser ?? "") {
             self.starImageView.tintColor = .systemYellow
         } else {
             self.starImageView.tintColor = .gray
@@ -96,7 +97,7 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
                                             ])
                 }
         
-        if DatabaseManager.share.checkFavorite(with: Int(data.id)) {
+        if DatabaseManager.share.checkFavorite(with: Int(data.id), of: idOfUser ?? "") {
             self.starImageView.tintColor = .systemYellow
         } else {
             self.starImageView.tintColor = .gray
@@ -126,7 +127,7 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
                                             ])
                 }
         
-        if DatabaseManager.share.checkFavorite(with: Int(data.id)) {
+        if DatabaseManager.share.checkFavorite(with: Int(data.id), of: idOfUser ?? "") {
             self.starImageView.tintColor = .systemYellow
         } else {
             self.starImageView.tintColor = .gray
@@ -178,11 +179,11 @@ class ListStyleCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {
-        if DatabaseManager.share.checkFavorite(with: idMovie){
-            DatabaseManager.share.deleteFavorite(with: idMovie)
+        if DatabaseManager.share.checkFavorite(with: idMovie, of: idOfUser ?? ""){
+            DatabaseManager.share.deleteFavorite(with: idMovie, of: idOfUser ?? "")
             self.starImageView.tintColor = .gray
         } else {
-            DatabaseManager.share.addFavorite(id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
+            DatabaseManager.share.addFavorite(idUser: idOfUser ?? "", id: idMovie, name: name, posterPath: posterPath, time: time, overview: overview)
             self.starImageView.tintColor = .systemYellow
         }
     }

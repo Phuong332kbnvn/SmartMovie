@@ -50,9 +50,11 @@ class SignInViewController: UIViewController {
                 TokenService.share.saveToken(token: token)
                 
                 let fullName = (json as! ResponseUserModel).name
+                let id = (json as! ResponseUserModel).id
+                UserDefaults.standard.set(id, forKey: idUser)
                 UserDefaults.standard.set(fullName, forKey: fullnameUser)
                 UserDefaults.standard.set(email, forKey: emailUser)
-                
+                idOfUser = UserDefaults.standard.string(forKey: idUser) ?? ""
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 guard let discoverViewController = storyboard.instantiateViewController(withIdentifier: "TabbarControllerCustom") as? TabbarControllerCustom else {
                     return

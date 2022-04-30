@@ -2,7 +2,7 @@
 //  Recent+CoreDataClass.swift
 //  Smart Movie
 //
-//  Created by Phuong on 25/04/2022.
+//  Created by Phuong on 30/04/2022.
 //
 //
 

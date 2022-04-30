@@ -35,6 +35,7 @@ let errorNetworkMessage = "Please check your network connectivity"
 // MARK: - Key
 let tokenKey = "tokenKey"
 let passwordKey = "passwordKey"
+let idUser = "idUser"
 let emailUser = "emailUser"
 let fullnameUser = "fullnameUser"
 

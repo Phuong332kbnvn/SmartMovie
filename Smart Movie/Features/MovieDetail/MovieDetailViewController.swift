@@ -97,10 +97,10 @@ class MovieDetailViewController: UIViewController {
                                                 ])
             }
             
-            if DatabaseManager.share.checkRecent(with: data.id) {
-                DatabaseManager.share.deleteRecent(with: data.id)
+            if DatabaseManager.share.checkRecent(with: data.id, idUser: idOfUser ?? "" ) {
+                DatabaseManager.share.deleteRecent(with: data.id, idUser: idOfUser ?? "" )
             }
-            DatabaseManager.share.addRecent(id: data.id, name: data.title, posterPath: data.posterPath, time: data.runtime, overview: data.overview)
+            DatabaseManager.share.addRecent(idUser: idOfUser ?? "" , id: data.id, name: data.title, posterPath: data.posterPath, time: data.runtime, overview: data.overview)
         }
     }
     

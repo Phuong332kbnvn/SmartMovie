@@ -42,8 +42,8 @@ class ListMovieViewController: UIViewController {
     
     private func setupData() {
         listNameLabel.text = listName
-        favoriteMovies = DatabaseManager.share.getListFavorite()
-        recentMovies = DatabaseManager.share.getListRecent()
+        favoriteMovies = DatabaseManager.share.getListFavorite(idUser: idOfUser ?? "")
+        recentMovies = DatabaseManager.share.getListRecent(idUser: idOfUser ?? "")
     }
 
     @IBAction func invokeBackButton(_ sender: UIButton) {

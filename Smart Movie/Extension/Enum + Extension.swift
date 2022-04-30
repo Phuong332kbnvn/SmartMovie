@@ -17,6 +17,8 @@ final class StyleCell {
     static var mode: Mode = .grid
 }
 
+var idOfUser: String?
+
 // MARK: - Page Type
 enum PageType {
     case movies

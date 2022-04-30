@@ -71,8 +71,9 @@ final class DatabaseManager {
 // MARK: - Extension DatabaseManage
 extension DatabaseManager {
     
-    func addFavorite(id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
+    func addFavorite(idUser: String, id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
         let entity = NSEntityDescription.insertNewObject(forEntityName: favoriteEntity, into: manageObjectContext) as! Favorite
+        entity.idUser = idUser
         entity.id = Int64(id)
         entity.name = name
         entity.posterPath = posterPath
@@ -81,8 +82,9 @@ extension DatabaseManager {
         return saveContext()
     }
     
-    func getListFavorite() -> [Favorite] {
+    func getListFavorite(idUser: String) -> [Favorite] {
         let fetchRequest = Favorite.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "idUser == %@", idUser)
         do {
             return try manageObjectContext.fetch(fetchRequest)
         } catch let error {
@@ -91,9 +93,9 @@ extension DatabaseManager {
         return []
     }
     
-    func deleteFavorite(with id: Int) {
+    func deleteFavorite(with id: Int, of idUser: String) {
         let fetchRequest = Favorite.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d AND idUser == %@",id, idUser)
         do {
             let favorites = try manageObjectContext.fetch(fetchRequest)
             for favorite in favorites {
@@ -105,9 +107,9 @@ extension DatabaseManager {
         _ = saveContext()
     }
     
-    func checkFavorite(with id: Int) -> Bool {
+    func checkFavorite(with id: Int, of idUser: String) -> Bool {
         let fetchRequest = Favorite.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d AND idUser == %@",id, idUser)
         do {
             if let favorite = try manageObjectContext.fetch(fetchRequest).first{
                 return true
@@ -119,8 +121,9 @@ extension DatabaseManager {
         return false
     }
     
-    func addRecent(id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
+    func addRecent(idUser: String, id: Int, name: String, posterPath: String, time: Int, overview: String) -> Bool {
         let entity = NSEntityDescription.insertNewObject(forEntityName: recentEntity, into: manageObjectContext) as! Recent
+        entity.idUser = idUser
         entity.id = Int64(id)
         entity.name = name
         entity.posterPath = posterPath
@@ -129,8 +132,9 @@ extension DatabaseManager {
         return saveContext()
     }
     
-    func getListRecent() -> [Recent] {
+    func getListRecent(idUser: String) -> [Recent] {
         let fetchRequest = Recent.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "idUser == %@", idUser)
         do {
             return try manageObjectContext.fetch(fetchRequest)
         } catch let error {
@@ -139,9 +143,9 @@ extension DatabaseManager {
         return []
     }
     
-    func checkRecent(with id: Int) -> Bool {
+    func checkRecent(with id: Int, idUser: String) -> Bool {
         let fetchRequest = Recent.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d AND idUser == %@", id, idUser)
         do {
             if let recent = try manageObjectContext.fetch(fetchRequest).first{
                 return true
@@ -153,9 +157,9 @@ extension DatabaseManager {
         return false
     }
     
-    func deleteRecent(with id: Int) {
+    func deleteRecent(with id: Int, idUser: String) {
         let fetchRequest = Recent.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %id", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d AND idUser == %@", id, idUser)
         do {
             let recents = try manageObjectContext.fetch(fetchRequest)
             for recent in recents {

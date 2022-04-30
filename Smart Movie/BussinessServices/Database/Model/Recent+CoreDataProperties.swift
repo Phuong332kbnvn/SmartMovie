@@ -2,7 +2,7 @@
 //  Recent+CoreDataProperties.swift
 //  Smart Movie
 //
-//  Created by Phuong on 25/04/2022.
+//  Created by Phuong on 30/04/2022.
 //
 //
 
@@ -21,6 +21,7 @@ extension Recent {
     @NSManaged public var posterPath: String?
     @NSManaged public var overview: String?
     @NSManaged public var time: Int64
+    @NSManaged public var idUser: String?
 
 }
 

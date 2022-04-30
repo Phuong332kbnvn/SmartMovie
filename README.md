@@ -9,7 +9,7 @@ Framework
 
 
 Feature
-- User account
+- Register account, login, logout
 - List movie
 - Genre
 - Search
@@ -20,4 +20,5 @@ Feature
 - Recent movie
 - Favorite movie
 - Movie similar
+- Change password
 - ...

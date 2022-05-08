@@ -21,4 +21,5 @@ Feature
 - Favorite movie
 - Movie similar
 - Change password
+- Review, vote
 - ...

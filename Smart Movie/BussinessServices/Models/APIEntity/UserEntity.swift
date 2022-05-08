@@ -43,3 +43,26 @@ struct ResponseUserModel: Codable {
     }
 }
 
+// MARK: - Request Review Model
+struct RequestReviewModel: Encodable {
+    let idUser: String
+    let idMovie: Int
+    let userName: String
+    let vote: Int?
+    let content: String
+    let time: String
+}
+
+// MARK: - Response Review Model
+struct ResponseReviewModel: Codable {
+    let idUser: String
+    let idMovie: Int
+    let created: Int
+    let time: String
+//    let avatar: Int?
+    let userName: String
+    let vote: Int
+    let content: String
+
+}
+

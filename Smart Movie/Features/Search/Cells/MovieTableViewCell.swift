@@ -75,17 +75,17 @@ genres.append("\(self?.presenter.getNameGenre(id: data.genreIDs[genreIndex]) ?? 
     func formatRating(_ voteAverage: Double) {
         if voteAverage == 0 {
             return
-        } else if voteAverage < 2 {
+        } else if voteAverage <= 2 {
             ratedImageView[0].tintColor = .systemYellow
-        } else if voteAverage < 4 {
+        } else if voteAverage <= 4 {
             for indexStar in 0..<2 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }
-        } else if voteAverage < 6 {
+        } else if voteAverage <= 6 {
             for indexStar in 0..<3 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }
-        } else if voteAverage < 8 {
+        } else if voteAverage <= 8 {
             for indexStar in 0..<4 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }

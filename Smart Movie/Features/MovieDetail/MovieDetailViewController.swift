@@ -41,10 +41,11 @@ class MovieDetailViewController: UIViewController {
         presenter.getListTrailers = { [weak self] results in
             self?.listTrailer = results
         }
+        
         setupData()
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         castTableView.dataSource = self
         castTableView.delegate = self
         
@@ -56,7 +57,7 @@ class MovieDetailViewController: UIViewController {
         castTableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     }
     
-    func setupData() {
+    private func setupData() {
         presenter.needReload = { [weak self] in
             guard let self = self else {
                 return
@@ -104,7 +105,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    func formatTime(_ time: Int) -> String {
+    private func formatTime(_ time: Int) -> String {
         var hour: Int = 0
         var minute: Int = 0
         hour = Int(time/60)
@@ -112,7 +113,7 @@ class MovieDetailViewController: UIViewController {
         return "\(hour)h \(minute)m"
     }
     
-    func formatDate(_ date: String) -> String {
+    private func formatDate(_ date: String) -> String {
         let item = date.components(separatedBy: "-")
         
         let month = Int(item[1])
@@ -148,20 +149,20 @@ class MovieDetailViewController: UIViewController {
         return "\(monthString) \(item[2]), \(item[0])"
     }
     
-    func formatRating(_ voteAverage: Double) {
+    private func formatRating(_ voteAverage: Double) {
         if voteAverage == 0 {
             return
-        } else if voteAverage < 2 {
+        } else if voteAverage <= 2 {
             ratedImageView[0].tintColor = .systemYellow
-        } else if voteAverage < 4 {
+        } else if voteAverage <= 4 {
             for indexStar in 0..<2 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }
-        } else if voteAverage < 6 {
+        } else if voteAverage <= 6 {
             for indexStar in 0..<3 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }
-        } else if voteAverage < 8 {
+        } else if voteAverage <= 8 {
             for indexStar in 0..<4 {
                 ratedImageView[indexStar].tintColor = .systemYellow
             }

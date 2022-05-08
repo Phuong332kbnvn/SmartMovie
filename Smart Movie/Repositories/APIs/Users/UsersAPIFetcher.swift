@@ -18,6 +18,8 @@ protocol UsersAPIFetcherProtocol {
     func fetchRegister(user: RegisterModel, completionHandler: @escaping (Bool) ->())
     func fetchLogin(user: LoginModel, completionHandler: @escaping Handler)
     func fetchLogout()
+    
+    func fetchReview(completionHandler: @escaping Handler)
 }
 
 class UsersAPIFetcher {
@@ -25,6 +27,7 @@ class UsersAPIFetcher {
 }
 
 extension UsersAPIFetcher: UsersAPIFetcherProtocol {
+    
     func fetchRegister(user: RegisterModel, completionHandler: @escaping (Bool) -> ()) {
         let header: HTTPHeaders = [
             .contentType("application/json")
@@ -133,4 +136,66 @@ extension UsersAPIFetcher: UsersAPIFetcherProtocol {
             }
         }
     }
+    
+    
+    func fetchReview(completionHandler: @escaping Handler) {
+        
+        AF.request(review_url).response { response in
+            debugPrint(response)
+            switch response.result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                do {
+                    let json = try JSONDecoder().decode([ResponseReviewModel].self, from: data)
+//                    print(json)
+                    if response.response?.statusCode == 200 {
+                        completionHandler(.success(json))
+                    } else {
+                        completionHandler(.failure(.custom(message: errorNetworkMessage)))
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completionHandler(.failure(.custom(message: errorMessage)))
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completionHandler(.failure(.custom(message: errorMessage)))
+            }
+        }
+    }
+    
+    func fetchAddReview(review: RequestReviewModel, completionHandler: @escaping (Bool) ->()) {
+        let header: HTTPHeaders = [
+            "Content-Type" : "application/json",
+            "user-token": "\(TokenService.share.getToken())"
+        ]
+        
+        AF.request(saveReview_url, method: .post, parameters: review, encoder: JSONParameterEncoder.default, headers: header).response { response in
+            debugPrint(response)
+            switch response.result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    if response.response?.statusCode == 200 {
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    completionHandler(false)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+                completionHandler(false)
+            }
+        }
+    }
+    
 }
